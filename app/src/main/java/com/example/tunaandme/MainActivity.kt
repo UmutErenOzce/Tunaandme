@@ -1,47 +1,30 @@
-package com.example.tunaandme
+package com.example.truthdareapp
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.tunaandme.ui.theme.TunaandmeTheme
+import android.widget.Button
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            TunaandmeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val btnTruth: Button = findViewById(R.id.btnTruth)
+        val btnDare: Button = findViewById(R.id.btnDare)
+
+        btnTruth.setOnClickListener {
+            openResultActivity("truth")
+        }
+
+        btnDare.setOnClickListener {
+            openResultActivity("dare")
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TunaandmeTheme {
-        Greeting("Android")
+    private fun openResultActivity(type: String) {
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("type", type)
+        startActivity(intent)
     }
 }
