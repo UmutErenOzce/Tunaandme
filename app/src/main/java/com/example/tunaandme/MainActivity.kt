@@ -1,25 +1,22 @@
 package com.example.tunaandme
+import com.example.tunaandme.R
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnTruth: Button = findViewById(R.id.btnTruth)
-        val btnDare: Button = findViewById(R.id.btnDare)
+        val btnTruth: MaterialButton = findViewById(R.id.btnTruth)
+        val btnDare: MaterialButton = findViewById(R.id.btnDare)
 
-        btnTruth.setOnClickListener {
-            openResultActivity("truth")
-        }
-
-        btnDare.setOnClickListener {
-            openResultActivity("dare")
-        }
+        btnTruth.setOnClickListener { openResultActivity("truth") }
+        btnDare.setOnClickListener { openResultActivity("dare") }
     }
 
     private fun openResultActivity(type: String) {
